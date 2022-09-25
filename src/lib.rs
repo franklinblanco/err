@@ -1,6 +1,11 @@
 use std::fmt::Display;
 use serde::{Serialize, Deserialize};
 
+/// This is for sending errors back from requests conveniently.
+/// This struct contains an optional key just in 
+/// case you want to deal with internationalization.
+/// It was left as optional just in case you don't
+/// have the time to yet...
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct MessageResource {
     pub key: Option<String>,
@@ -35,6 +40,8 @@ impl Default for MessageResource{
     }
 }
 
+/// This is supposed to be used whenever you have an error in your code and want to be more specific about it. 
+/// Fits in with most CRUD web apps. What you send back to the client is a MessageResource, not the error itself!
 #[derive(Debug, Clone)]
 pub enum Error {
     Network(MessageResource),
