@@ -6,7 +6,7 @@ use serde::{Serialize, Deserialize};
 /// case you want to deal with internationalization.
 /// It was left as optional just in case you don't
 /// have the time to yet...
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct MessageResource {
     pub key: Option<String>,
     pub message: String,
@@ -39,7 +39,6 @@ impl Default for MessageResource{
         Self { key: None, message: "".to_string() }
     }
 }
-
 /// This is supposed to be used whenever you have an error in your code and want to be more specific about it. 
 /// Fits in with most CRUD web apps. What you send back to the client is a MessageResource, not the error itself!
 #[derive(Debug, Clone)]
